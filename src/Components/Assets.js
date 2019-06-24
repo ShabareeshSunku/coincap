@@ -33,11 +33,11 @@ class Assets extends Component {
                                             <tr key={'' + index}>
                                                 <td className="align-center">{item.rank}</td>
                                                 <td>{item.name}</td>
-                                                <td>{item.price}</td>
-                                                <td>{item.marketCap}</td>
-                                                <td>{item.vwap24Hr}</td>
+                                                <td>${item.price}</td>
+                                                <td>${item.marketCap}</td>
+                                                <td>${item.vwap24Hr}</td>
                                                 <td>{item.supply}</td>
-                                                <td>{item.volume}</td>
+                                                <td>${item.volume}</td>
                                                 <td>{item.change}</td>
                                             </tr>
                                         )
