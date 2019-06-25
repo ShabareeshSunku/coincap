@@ -28,16 +28,19 @@ function processAssets(assets = []) {
   let assetLen = assets.length;
   for (let i = 0; i < assetLen; i++) {
     let ithAsset = assets[i];
+    let symbol = ithAsset.symbol.toLowerCase()
     formattedAssets.push({
+      assetId: ithAsset.id,
       name: ithAsset.name,
       rank: ithAsset.rank,
-      symbol: ithAsset.symbol,
+      symbol: symbol,
       supply: abbrNumber(ithAsset.supply, 2),
       marketCap: abbrNumber(ithAsset.marketCapUsd, 2),
       volume: abbrNumber(ithAsset.volumeUsd24Hr, 2),
       price: parseFloat(ithAsset.priceUsd).toFixed(2),
       vwap24Hr: abbrNumber(ithAsset.vwap24Hr, 2),
-      change: parseFloat(ithAsset.changePercent24Hr).toFixed(2)
+      change: parseFloat(ithAsset.changePercent24Hr).toFixed(2),
+      imageUrl: `https://static.coincap.io/assets/icons/${symbol}@2x.png`
     });
   }
   return {

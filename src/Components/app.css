@@ -1,6 +1,10 @@
 html{
     font-size: 55%;
   }
+  a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+  }
   body {
     font-family: 'Open Sans', sans-serif;
     background-color:#ECEFF1; 
@@ -8,7 +12,12 @@ html{
   *{
     box-sizing: border-box;
   }
-  
+  tr {
+    cursor: pointer;
+  }
+  tr:hover{
+    background-color: #EAEAEA;
+  }
   th{
     font-weight: 700;
     background-color: #F1F1F1;

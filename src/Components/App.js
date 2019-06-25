@@ -1,9 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import configureStore from '../store'
 import Assets from './Assets'
-import Home from './Exchanges'
+import Exchanges from './Exchanges'
+import Coin from './Coin'
 import Header from './Header'
 import './app.css'
 
@@ -14,8 +15,11 @@ export default () => {
         <Provider store={store}>
             <BrowserRouter>
                 <Header />
-                <Route path='/Assets' component={Assets} />
-                <Route path='/Exchanges' component={Home} />
+                <Switch>
+                    <Route exact={true} path='/assets' component={Assets} />
+                    <Route exact={true} path='/assets/:assetId' component={Coin} />
+                    <Route exact={true} path='/exchanges' component={Exchanges} />
+                </Switch>
             </BrowserRouter>
         </Provider>
     )

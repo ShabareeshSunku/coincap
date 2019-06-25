@@ -13,10 +13,8 @@ class Exchanges extends Component {
       "Rank",
       "Name",
       "Trading Pairs",
-      "Top Pair",
       "Volume(24Hr)",
-      "Total%",
-      "Status"
+      "Total%"
     ];
     return (
       <div className="list-container">
@@ -41,10 +39,8 @@ class Exchanges extends Component {
                     <td className="align-center">{item.rank}</td>
                     <td>{item.name}</td>
                     <td>{item.tradingPairs}</td>
-                    <td>{item.topPair}</td>
                     <td>${item.volume}</td>
                     <td>{item.totalPercent}</td>
-                    <td>{item.status}</td>
                   </tr>
                 );
               })}
