@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchExchanges } from "../actions";
+import { Link } from "react-router-dom";
 
 class Exchanges extends Component {
   componentDidMount() {
@@ -33,11 +34,15 @@ class Exchanges extends Component {
                   </th>
                 ))}
               </tr>
-              {items.map((item, index) => {
+              {items.map(item => {
                 return (
-                  <tr key={"" + index}>
+                  <tr key={item.exchangeId}>
                     <td className="align-center">{item.rank}</td>
-                    <td>{item.name}</td>
+                    <td>
+                      <Link to={`/exchanges/${item.exchangeId}`}>
+                        {item.name}
+                      </Link>
+                    </td>
                     <td>{item.tradingPairs}</td>
                     <td>${item.volume}</td>
                     <td>{item.totalPercent}</td>
