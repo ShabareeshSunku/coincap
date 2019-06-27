@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import assetsReducer from "./assetsReducer";
-import exchangesReducer from "./exchangesReducer";
+import coinListReducer from "./coinListReducer";
+import exchangesListReducer from "./exchangesListReducer";
 export default () => {
   return combineReducers({
-    assets: assetsReducer,
-    exchanges: exchangesReducer
+    coins: coinListReducer,
+    exchanges: exchangesListReducer
   });
 };

@@ -1,19 +1,19 @@
 import constants from '../constants'
-const assetsReducer = (state = { loading: false, items: [] }, action) => {
+const coinListReducer = (state = { loading: false, items: [] }, action) => {
     switch (action.type) {
-        case constants.FETCH_ASSETS: {
+        case constants.FETCH_COINLIST: {
             return {
                 loading: true,
                 items: []
             }
         }
-        case constants.FETCH_ASSETS_SUCCESS: {
+        case constants.FETCH_COINLIST_SUCCESS: {
             return {
                 loading: false,
-                items: action.assets
+                items: action.coins
             }
         }
-        case constants.FETCH_ASSETS_FAILURE: {
+        case constants.FETCH_COINLIST_FAILURE: {
             return {
                 loading: false,
                 items: [],
@@ -24,4 +24,4 @@ const assetsReducer = (state = { loading: false, items: [] }, action) => {
     }
 }
 
-export default assetsReducer
+export default coinListReducer

@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchExchanges } from "../actions";
+import { fetchAssets } from "../actions";
 import { Link } from "react-router-dom";
-
-class Exchanges extends Component {
+class CoinList extends Component {
   componentDidMount() {
-    this.props.fetchExchanges();
+    this.props.fetchAssets();
   }
   render() {
-    const exchanges = this.props.exchanges;
-    const { items = [], loading = false } = exchanges;
+    const coins = this.props.coins;
+    const { items = [], loading = false } = coins;
     const headings = [
       "Rank",
       "Name",
-      "Trading Pairs",
+      "Price",
+      "Market Cap",
+      "VWAP(24Hr)",
+      "Supply",
       "Volume(24Hr)",
-      "Total%"
+      "Change(24Hrs)"
     ];
     return (
       <div className="list-container">
@@ -36,16 +38,27 @@ class Exchanges extends Component {
               </tr>
               {items.map(item => {
                 return (
-                  <tr key={item.exchangeId}>
+                  <tr key={item.assetId}>
                     <td className="align-center">{item.rank}</td>
                     <td>
-                      <Link to={`/exchanges/${item.exchangeId}`}>
-                        {item.name}
-                      </Link>
+                      <img
+                        src={item.imageUrl}
+                        alt={item.name}
+                        className="logo"
+                      />
+                      <div className="coinName">
+                        <Link to={`/assets/${item.assetId}`}>
+                          {item.name}
+                          <span className="symbol">{item.symbol}</span>
+                        </Link>
+                      </div>
                     </td>
-                    <td>{item.tradingPairs}</td>
+                    <td>${item.price}</td>
+                    <td>${item.marketCap}</td>
+                    <td>${item.vwap24Hr}</td>
+                    <td>{item.supply}</td>
                     <td>${item.volume}</td>
-                    <td>{item.totalPercent}</td>
+                    <td>{item.change}</td>
                   </tr>
                 );
               })}
@@ -58,17 +71,17 @@ class Exchanges extends Component {
 }
 const mapStateToProps = (state = {}) => {
   return {
-    exchanges: state.exchanges || {}
+    coins: state.coins || {}
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    fetchExchanges: () => dispatch(fetchExchanges())
+    fetchAssets: () => dispatch(fetchAssets())
   };
 };
-const ConnectedExchanges = connect(
+const ConnectedAssets = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Exchanges);
+)(CoinList);
 
-export default ConnectedExchanges;
+export default ConnectedAssets;

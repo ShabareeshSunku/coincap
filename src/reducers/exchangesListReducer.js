@@ -1,19 +1,19 @@
 import constants from "../constants";
-const exchangesReducer = (state = { loading: false, items: [] }, action) => {
+const exchangesListReducer = (state = { loading: false, items: [] }, action) => {
   switch (action.type) {
-    case constants.FETCH_EXCHANGES: {
+    case constants.FETCH_EXCHANGESLIST: {
       return {
         loading: true,
         items: []
       };
     }
-    case constants.FETCH_EXCHANGES_SUCCESS: {
+    case constants.FETCH_EXCHANGESLIST_SUCCESS: {
       return {
         loading: false,
         items: action.exchanges
       };
     }
-    case constants.FETCH_EXCHANGES_FAILURE: {
+    case constants.FETCH_EXCHANGESLIST_FAILURE: {
       return {
         loading: false,
         items: [],
@@ -25,4 +25,4 @@ const exchangesReducer = (state = { loading: false, items: [] }, action) => {
   }
 };
 
-export default exchangesReducer;
+export default exchangesListReducer;

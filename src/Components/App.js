@@ -2,10 +2,10 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import configureStore from "../store";
-import Assets from "./Assets";
-import Exchanges from "./Exchanges";
+import CoinList from "./CoinList";
+import ExchangesList from "./ExchangesList";
 import Coin from "./Coin";
-import ExchangeCoin from "./ExchangeCoin";
+import Exchange from "./Exchange";
 import Header from "./Header";
 import "./app.css";
 
@@ -16,13 +16,13 @@ export default () => {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact={true} path="/assets" component={Assets} />
-          <Route exact={true} path="/assets/:assetId" component={Coin} />
-          <Route exact={true} path="/exchanges" component={Exchanges} />
+          <Route exact={true} path="/coins" component={CoinList} />
+          <Route exact={true} path="/coins/:coinId" component={Coin} />
+          <Route exact={true} path="/exchanges" component={ExchangesList} />
           <Route
             exact={true}
             path="/exchanges/:exchangeId"
-            component={ExchangeCoin}
+            component={Exchange}
           />
         </Switch>
       </BrowserRouter>
