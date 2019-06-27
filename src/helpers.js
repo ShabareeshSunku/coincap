@@ -22,33 +22,21 @@ function abbrNumber(actual, fixed) {
  * @param {Array} assets assets from the coincap API
  * @returns {Array} properly formatted asset data pushed into an array
  */
-function processAssets(coins = []) {
+function processCoinList(coins = []) {
   //variable to hold the formatted(processed) data
   let formattedCoins = [];
   let coinsLen = coins.length;
   for (let i = 0; i < coinsLen; i++) {
     let ithCoin = coins[i];
-    let symbol = ithCoin.symbol.toLowerCase()
-    formattedCoins.push({
-      assetId: ithCoin.id,
-      name: ithCoin.name,
-      rank: ithCoin.rank,
-      symbol: symbol,
-      supply: abbrNumber(ithCoin.supply, 2),
-      marketCap: abbrNumber(ithCoin.marketCapUsd, 2),
-      volume: abbrNumber(ithCoin.volumeUsd24Hr, 2),
-      price: parseFloat(ithCoin.priceUsd).toFixed(2),
-      vwap24Hr: abbrNumber(ithCoin.vwap24Hr, 2),
-      change: parseFloat(ithCoin.changePercent24Hr).toFixed(2),
-      imageUrl: `https://static.coincap.io/assets/icons/${symbol}@2x.png`
-    });
+    let processedIthCoin = processCoin(ithCoin)
+    formattedCoins.push(processedIthCoin.coin);
   }
   return {
     coins: formattedCoins
   };
 }
 
-function processExchanges(exchanges = []) {
+function processExchangesList(exchanges = []) {
   let formattedExchanges = [];
   let exchangeLen = exchanges.length;
   for (let i = 0; i < exchangeLen; i++) {
@@ -59,11 +47,31 @@ function processExchanges(exchanges = []) {
       tradingPairs: ithExchange.tradingPairs,
       volume: abbrNumber(ithExchange.volumeUsd, 2),
       totalPercent: parseFloat(ithExchange.percentTotalVolume).toFixed(2),
-      exchangeId : ithExchange.exchangeId
+      exchangeId: ithExchange.exchangeId
     });
   }
   return {
     exchanges: formattedExchanges
   };
 }
-export { processAssets, processExchanges };
+
+function processCoin(ithCoin) {
+  let symbol = ithCoin.symbol.toLowerCase()
+  let processedIthCoin = {
+    assetId: ithCoin.id,
+    name: ithCoin.name,
+    rank: ithCoin.rank,
+    symbol: symbol,
+    supply: abbrNumber(ithCoin.supply, 2),
+    marketCap: abbrNumber(ithCoin.marketCapUsd, 2),
+    volume: abbrNumber(ithCoin.volumeUsd24Hr, 2),
+    price: parseFloat(ithCoin.priceUsd).toFixed(2),
+    vwap24Hr: abbrNumber(ithCoin.vwap24Hr, 2),
+    change: parseFloat(ithCoin.changePercent24Hr).toFixed(2),
+    imageUrl: `https://static.coincap.io/assets/icons/${symbol}@2x.png`
+  }
+  return {
+    coin : processedIthCoin
+  }
+}
+export { processCoinList, processCoin, processExchangesList };

@@ -145,3 +145,14 @@ header {
   background-color: crimson;
   padding: 20px;
 }
+
+.coin-info{
+  padding : 16px;
+  background-color: #E1E1E1;
+  width:100%;
+}
+
+.span-change {
+  font-size: 1.6rem;
+  padding-left:8px; 
+}

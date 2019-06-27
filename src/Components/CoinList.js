@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchAssets } from "../actions";
+import { fetchCoinList } from "../actions";
 import { Link } from "react-router-dom";
 class CoinList extends Component {
   componentDidMount() {
-    this.props.fetchAssets();
+    this.props.fetchCoinList();
   }
   render() {
     const coins = this.props.coins;
@@ -47,7 +47,7 @@ class CoinList extends Component {
                         className="logo"
                       />
                       <div className="coinName">
-                        <Link to={`/assets/${item.assetId}`}>
+                        <Link to={`/coins/${item.assetId}`}>
                           {item.name}
                           <span className="symbol">{item.symbol}</span>
                         </Link>
@@ -76,12 +76,12 @@ const mapStateToProps = (state = {}) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAssets: () => dispatch(fetchAssets())
+    fetchCoinList: () => dispatch(fetchCoinList())
   };
 };
-const ConnectedAssets = connect(
+const ConnectedCoinList = connect(
   mapStateToProps,
   mapDispatchToProps
 )(CoinList);
 
-export default ConnectedAssets;
+export default ConnectedCoinList;

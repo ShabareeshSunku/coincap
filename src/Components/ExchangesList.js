@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchExchanges } from "../actions";
+import { fetchExchangesList } from "../actions";
 import { Link } from "react-router-dom";
 
 class ExchangesList extends Component {
   componentDidMount() {
-    this.props.fetchExchanges();
+    this.props.fetchExchangesList();
   }
   render() {
     const exchanges = this.props.exchanges;
@@ -63,12 +63,12 @@ const mapStateToProps = (state = {}) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    fetchExchanges: () => dispatch(fetchExchanges())
+    fetchExchangesList: () => dispatch(fetchExchangesList())
   };
 };
-const ConnectedExchanges = connect(
+const ConnectedExchangesList = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ExchangesList);
 
-export default ConnectedExchanges;
+export default ConnectedExchangesList;

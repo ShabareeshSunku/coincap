@@ -9,6 +9,9 @@ const fetcher = (store) => (next) => action => {
     fetch(action.reqUrl)
         .then((res) => res.json())
         .then((jsonResponse) => {
+            if (jsonResponse.error) {
+                return next({ ...action, type: action.type + '_FAILURE' })
+            }
             let data = {}
             if (action.transform) {
                 data = action.transform(jsonResponse.data)

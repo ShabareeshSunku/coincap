@@ -1,21 +1,37 @@
 import constants from "../constants";
-import { processAssets } from "../helpers";
-import { processExchanges } from "../helpers";
-function fetchAssets() {
+import { processCoinList, processExchangesList, processCoin } from "../helpers";
+function fetchCoinList() {
   return {
     type: constants.FETCH_COINLIST,
     async: true,
     reqUrl: "https://api.coincap.io/v2/assets?limit=25",
-    transform: processAssets
+    transform: processCoinList
   };
 }
-function fetchExchanges() {
+function fetchExchangesList() {
   return {
     type: constants.FETCH_EXCHANGESLIST,
     async: true,
     reqUrl: "https://api.coincap.io/v2/exchanges?limit=25",
-    transform: processExchanges
+    transform: processExchangesList
   };
 }
 
-export { fetchAssets, fetchExchanges };
+function fetchCoin(coinId) {
+  return {
+    type: constants.FETCH_COIN,
+    async: true,
+    reqUrl: `https://api.coincap.io/v2/assets/${coinId}`,
+    transform: processCoin
+  }
+}
+
+function fetchCoinHistory(coinId, interval = "d1") {
+  return {
+    type: constants.FETCH_COIN_HISTORY,
+    async: true,
+    reqUrl: `https://api.coincap.io/v2/assets/${coinId}/history?interval=${interval}`,
+    interval: interval
+  }
+}
+export { fetchCoinList, fetchExchangesList, fetchCoin };
