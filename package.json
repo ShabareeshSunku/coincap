@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
+    "react-charts": "^2.0.0-alpha.12",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "redux": "^4.0.1"
   },
@@ -31,7 +33,6 @@
     ]
   },
   "devDependencies": {
-    "react-router-dom": "^5.0.1",
     "redux-devtools-extension": "^2.13.8"
   }
 }

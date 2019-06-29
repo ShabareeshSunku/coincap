@@ -33,6 +33,10 @@ th {
 .price {
   min-width: 15rem;
 }
+.wrapper {
+  width:100%;
+  margin:auto
+}
 .list-container {
   overflow: scroll;
   background-color: #fff;
@@ -44,6 +48,9 @@ th {
 
 @media (min-width: 80rem) {
   .list-container {
+    width: 80%;
+  }
+  .wrapper {
     width: 80%;
   }
 }
@@ -59,7 +66,7 @@ th {
   }
 }
 .increase {
-  color: green;
+  color: rgb(24, 198, 131);
 }
 
 .decrease {
@@ -138,21 +145,68 @@ th {
   padding: 12px;
   font-weight: bold;
   font-size: 1.8rem;
-  color: #fff;
 }
 
 header {
-  background-color: crimson;
-  padding: 20px;
+  background-color: #FFF;
+  padding: 20px 0px;
 }
 
 .coin-info{
   padding : 16px;
-  background-color: #E1E1E1;
+  background-image: linear-gradient(to right, rgb(63, 81, 181), rgb(100, 181, 246));
   width:100%;
+  color:#FFF
 }
 
 .span-change {
   font-size: 1.6rem;
   padding-left:8px; 
+}
+.rank-text {
+  font-size: 4rem;
+  display: block;
+}
+.rank-container{
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  position: relative;
+  text-align: center;
+  width: auto;
+  display: inline-block;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 15px -3px;
+  background: rgb(24, 198, 131);
+  padding: 1.5rem;
+}
+.rank-container::before{
+  content: "";
+  width: calc(100% + 20px);
+  height: 10px;
+  position: absolute;
+  left: -10px;
+  top: 0px;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  background: inherit;
+}
+
+.interval-btn {
+  background-color: rgb(24, 198, 131);
+  color : #FFF;
+  padding : 8px 12px;
+  margin:8px;
+  border-radius : 3px;
+  display: inline-block;
+  cursor: pointer;
+}
+.chart-container {
+  height: 500px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 15px -3px;
+}
+.chart {
+  min-height : 400px;
+  padding: 16px;
 }

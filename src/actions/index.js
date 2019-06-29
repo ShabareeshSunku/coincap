@@ -1,5 +1,5 @@
 import constants from "../constants";
-import { processCoinList, processExchangesList, processCoin } from "../helpers";
+import { processCoinList, processExchangesList, processCoin, processCoinHistory } from "../helpers";
 function fetchCoinList() {
   return {
     type: constants.FETCH_COINLIST,
@@ -26,12 +26,28 @@ function fetchCoin(coinId) {
   }
 }
 
-function fetchCoinHistory(coinId, interval = "d1") {
+function fetchCoinHistory(coinId, timespan) {
+  let start, end, interval, multiplier = 1;
+  if (timespan === '1D') {
+    multiplier = 1
+    interval = 'h1'
+  } else if (timespan === '1W') {
+    multiplier = 7
+    interval = 'h12'
+  } else if (timespan === '1M') {
+    multiplier = 30
+    interval = 'd1'
+  }
+  end = (new Date()).valueOf()
+  start = end - (24 * 3600 * 1000 * multiplier)
   return {
     type: constants.FETCH_COIN_HISTORY,
     async: true,
-    reqUrl: `https://api.coincap.io/v2/assets/${coinId}/history?interval=${interval}`,
-    interval: interval
+    reqUrl: `https://api.coincap.io/v2/assets/${coinId}/history?interval=${interval}&start=${start}&end=${end}`,
+    timespan: timespan,
+    start,
+    end,
+    transform: processCoinHistory
   }
 }
-export { fetchCoinList, fetchExchangesList, fetchCoin };
+export { fetchCoinList, fetchExchangesList, fetchCoin, fetchCoinHistory };

@@ -71,7 +71,17 @@ function processCoin(ithCoin) {
     imageUrl: `https://static.coincap.io/assets/icons/${symbol}@2x.png`
   }
   return {
-    coin : processedIthCoin
+    coin: processedIthCoin
   }
 }
-export { processCoinList, processCoin, processExchangesList };
+
+function processCoinHistory(response=[]) {
+  const respLen = response.length
+  const data = []
+  for (let i = 0; i < respLen; i++) {
+    let ithResp = response[i]
+    data.push([ithResp.time, ithResp.priceUsd])
+  }
+  return { data }
+}
+export { processCoinList, processCoin, processExchangesList, processCoinHistory };
