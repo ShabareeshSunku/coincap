@@ -62,12 +62,12 @@ function processCoin(ithCoin) {
     name: ithCoin.name,
     rank: ithCoin.rank,
     symbol: symbol,
-    supply: abbrNumber(ithCoin.supply, 2),
-    marketCap: abbrNumber(ithCoin.marketCapUsd, 2),
-    volume: abbrNumber(ithCoin.volumeUsd24Hr, 2),
-    price: parseFloat(ithCoin.priceUsd).toFixed(2),
-    vwap24Hr: abbrNumber(ithCoin.vwap24Hr, 2),
-    change: parseFloat(ithCoin.changePercent24Hr).toFixed(2),
+    supply: ithCoin.supply,
+    marketCap: ithCoin.marketCapUsd,
+    volume: ithCoin.volumeUsd24Hr,
+    price: ithCoin.priceUsd,
+    vwap24Hr: ithCoin.vwap24Hr,
+    change: ithCoin.changePercent24Hr,
     imageUrl: `https://static.coincap.io/assets/icons/${symbol}@2x.png`
   }
   return {
@@ -75,7 +75,7 @@ function processCoin(ithCoin) {
   }
 }
 
-function processCoinHistory(response=[]) {
+function processCoinHistory(response = []) {
   const respLen = response.length
   const data = []
   for (let i = 0; i < respLen; i++) {
@@ -84,4 +84,4 @@ function processCoinHistory(response=[]) {
   }
   return { data }
 }
-export { processCoinList, processCoin, processExchangesList, processCoinHistory };
+export { processCoinList, processCoin, processExchangesList, processCoinHistory, abbrNumber };

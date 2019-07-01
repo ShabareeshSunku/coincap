@@ -210,3 +210,17 @@ header {
   min-height : 400px;
   padding: 16px;
 }
+.picker-option{
+  padding : 12px
+}
+.picker-name {
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 1.3rem;
+  display: block;
+}
+.picker-symbol {
+  text-transform: uppercase;
+  font-weight: bold;
+  display: block;
+}
