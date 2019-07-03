@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import { Chart } from 'react-charts'
 export default class ChartWrapper extends Component {
     render() {
+        const data = this.props.data
+        const multiplier = this.props.multiplier || 1
+        console.log(data)
+        const updatedData = data.map(item => {
+            return [item[0], parseFloat(item[1]) * 1 / multiplier]
+        })
         return (
             <div className="chart-container">
                 <div className="chart">
                     <Chart
                         data={[{
                             label: 'time vs price',
-                            data: this.props.data
+                            data: updatedData
                         }]}
                         axes={[
                             { primary: true, type: 'time', position: 'bottom' },

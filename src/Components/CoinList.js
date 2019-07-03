@@ -13,7 +13,7 @@ class CoinList extends Component {
     const coins = this.props.coins;
     const { items = [], loading = false } = coins;
     const { rate = {} } = this.context
-    const { currencySymbol, multiplier } = rate
+    const { currencySymbol='', multiplier } = rate
     const headings = [
       "Rank",
       "Name",
