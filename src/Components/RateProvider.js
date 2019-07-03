@@ -17,7 +17,7 @@ export default class RateProvider extends Component {
     setRate = (rate = {}) => {
         if (rate.id) {
             this.setState({
-                rate: rate
+                rate: { ...rate, multiplier: rate.rateUsd }
             })
         }
     }

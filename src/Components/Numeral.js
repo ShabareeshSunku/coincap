@@ -1,4 +1,3 @@
-import React from 'react';
 import { abbrNumber } from '../helpers'
 
 export default (props) => {

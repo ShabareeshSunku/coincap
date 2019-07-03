@@ -42,8 +42,8 @@ th {
   background-color: #fff;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 15px -3px;
-  /* padding : 12px; */
   margin: auto;
+  margin-top: 12px;
 }
 
 @media (min-width: 80rem) {
@@ -150,6 +150,7 @@ th {
 header {
   background-color: #FFF;
   padding: 20px 0px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 15px -3px;
 }
 
 .coin-info{
@@ -210,8 +211,31 @@ header {
   min-height : 400px;
   padding: 16px;
 }
+.picker-container {
+  max-width: 200px;
+  float: right;
+  margin-right: 12px;
+}
+.picker {
+  position: relative;
+  height : 30px;
+}
+.picker-results {
+  position: absolute;
+  max-height: 200px;
+  background-color: #FFF;
+  overflow: scroll;
+  z-index: 5;
+  padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 15px -3px;
+  top: 36px;
+  border-radius: 3px;
+  width: 100%;
+}
 .picker-option{
-  padding : 12px
+  padding : 12px;
+  border-bottom : 1px solid #EFEFEF;
+  cursor: pointer;
 }
 .picker-name {
   text-transform: capitalize;
@@ -223,4 +247,8 @@ header {
   text-transform: uppercase;
   font-weight: bold;
   display: block;
+}
+.picked-display {
+  font-weight: bold;
+  cursor: pointer;
 }
