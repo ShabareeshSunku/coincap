@@ -1,19 +1,57 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchCoinList } from "../actions";
-import { Link } from "react-router-dom";
-import Numeral from './Numeral'
+import { fetchCoinList, updatePrice } from "../actions";
 import { RateContext } from './RateContext'
-
+import CoinListItem from './CoinListItem'
 class CoinList extends Component {
+  constructor() {
+    super()
+    this.state = {
+      connected: false
+    }
+    this.socket = null
+  }
   componentDidMount() {
     this.props.fetchCoinList();
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    const me = this
+    const coins = me.props.coins;
+    const items = coins.items
+    let coinNames = ''
+    if (me.state.connected === false && items.length > 0) {
+      for (let i = 0; i < items.length; i++) {
+        coinNames += items[i].assetId
+        if (i !== items.length - 1) {
+          coinNames += ','
+        }
+      }
+      const socketUrl = `wss://ws.coincap.io/prices?assets=${coinNames}`
+      me.socket = new WebSocket(socketUrl)
+      me.socket.onopen = function () {
+        console.log('socket connection opened')
+      }
+      me.socket.onclose = function(){
+        console.log('connection closed')
+      }
+      me.socket.onmessage = function (msg) {
+        me.props.updatePrice(JSON.parse(msg.data))
+      }
+      me.setState({
+        connected: true
+      })
+    }
+  }
+
+  componentWillUnmount = () => {
+    this.socket.close()
+  };
+  
   render() {
     const coins = this.props.coins;
     const { items = [], loading = false } = coins;
     const { rate = {} } = this.context
-    const { currencySymbol='', multiplier } = rate
     const headings = [
       "Rank",
       "Name",
@@ -42,78 +80,7 @@ class CoinList extends Component {
                   ))}
                 </tr>
                 {items.map(item => {
-                  return (
-                    <tr key={item.assetId}>
-                      <td className="align-center">{item.rank}</td>
-                      <td>
-                        <img
-                          src={item.imageUrl}
-                          alt={item.name}
-                          className="logo"
-                        />
-                        <div className="coinName">
-                          <Link to={`/coins/${item.assetId}`}>
-                            {item.name}
-                            <span className="symbol">{item.symbol}</span>
-                          </Link>
-                        </div>
-                      </td>
-                      <td>
-                        <Numeral
-                          actualValue={item.price}
-                          toFixed={2}
-                          multiplier={multiplier}
-                          symbol={currencySymbol}
-                          abbreviate={false}
-                        />
-                      </td>
-                      <td>
-                        <Numeral
-                          actualValue={item.marketCap}
-                          toFixed={2}
-                          multiplier={multiplier}
-                          symbol={currencySymbol}
-                          abbreviate={true}
-                        />
-                      </td>
-                      <td>
-                        <Numeral
-                          actualValue={item.vwap24Hr}
-                          toFixed={2}
-                          multiplier={multiplier}
-                          symbol={currencySymbol}
-                          abbreviate={true}
-                        />
-                      </td>
-                      <td>
-                        <Numeral
-                          actualValue={item.supply}
-                          toFixed={2}
-                          multiplier={1}
-                          symbol=''
-                          abbreviate={true}
-                        />
-                      </td>
-                      <td>
-                        <Numeral
-                          actualValue={item.volume}
-                          toFixed={2}
-                          multiplier={multiplier}
-                          symbol={currencySymbol}
-                          abbreviate={true}
-                        />
-                      </td>
-                      <td className={item.change > 0 ? 'increase' : 'decrease'}>
-                        <Numeral
-                          actualValue={item.change}
-                          toFixed={2}
-                          multiplier={1}
-                          symbol=''
-                          abbreviate={true}
-                        />%
-                      </td>
-                    </tr>
-                  );
+                  return <CoinListItem coin={item} rate={rate} key={item.assetId} />
                 })}
               </thead>
             </table>
@@ -130,7 +97,8 @@ const mapStateToProps = (state = {}) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCoinList: () => dispatch(fetchCoinList())
+    fetchCoinList: () => dispatch(fetchCoinList()),
+    updatePrice: (payload) => dispatch(updatePrice(payload))
   };
 };
 const ConnectedCoinList = connect(

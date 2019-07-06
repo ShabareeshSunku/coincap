@@ -252,3 +252,21 @@ header {
   font-weight: bold;
   cursor: pointer;
 }
+
+.up{
+  background-color: inherit;
+  animation: upAnimation 1s ease-in;
+}
+.down{
+  background-color: inherit;
+  animation: downAnimation 1s ease-in;
+}
+
+@keyframes upAnimation{
+  from {background-color: rgba(24,198,131,0.5)};
+  to{background-color :inherit};
+}
+@keyframes downAnimation{
+  from {background-color: lightcoral};
+  to{background-color :inherit};
+}
