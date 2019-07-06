@@ -20,6 +20,17 @@ const coinListReducer = (state = { loading: false, items: [] }, action) => {
                 error: 'Something went wrong'
             }
         }
+        case constants.UPDATE_PRICE: {
+            const payload = action.payload
+            const items = state.items.slice(0)
+            for (let i = 0; i < items.length; i++) {
+                let ithItem = items[i]
+                if (typeof payload[ithItem.assetId] !== 'undefined') {
+                    items[i].price = payload[ithItem.assetId]
+                }
+            }
+            return Object.assign({}, state, { items })
+        }
         default: return state
     }
 }

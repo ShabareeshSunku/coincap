@@ -9,13 +9,6 @@ export default class RatePicker extends Component {
         }
     }
 
-    // componentDidMount = () => {
-    //     // const me = this
-    //     // me.setState({
-    //     //     searchText: this.context.rate.symbol
-    //     // })
-    // }
-
     onChange = (ev) => {
         const searchText = ev.target.value
         this.setState({

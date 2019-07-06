@@ -15,6 +15,6 @@ export default (props) => {
     } else {
         returnValue = parseFloat(convertedValue).toFixed(toFixed)
     }
-    
-    return `${symbol}${returnValue}`
+
+    return `${symbol ? symbol : ''}${returnValue}`
 }

@@ -50,4 +50,11 @@ function fetchCoinHistory(coinId, timespan) {
     transform: processCoinHistory
   }
 }
-export { fetchCoinList, fetchExchangesList, fetchCoin, fetchCoinHistory };
+
+function updatePrice(payload) {
+  return {
+    type: constants.UPDATE_PRICE,
+    payload
+  }
+}
+export { fetchCoinList, fetchExchangesList, fetchCoin, fetchCoinHistory, updatePrice };
