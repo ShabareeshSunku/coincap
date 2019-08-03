@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`helpers testing should return formatted coinList 1`] = `
+Object {
+  "coins": Array [
+    Object {
+      "assetId": "bitcoin",
+      "change": "-2.3446939690666684",
+      "imageUrl": "https://static.coincap.io/assets/icons/btc@2x.png",
+      "marketCap": "178726775535.4699808212764900",
+      "name": "Bitcoin",
+      "price": "10021.9263684073429372",
+      "rank": "1",
+      "supply": "17833575.0000000000000000",
+      "symbol": "btc",
+      "volume": "6576536582.9421380379100058",
+      "vwap24Hr": "10135.9248452182911382",
+    },
+    Object {
+      "assetId": "ethereum",
+      "change": "-1.4760358265832596",
+      "imageUrl": "https://static.coincap.io/assets/icons/eth@2x.png",
+      "marketCap": "22704921743.3568432983256706",
+      "name": "Ethereum",
+      "price": "212.1565646377679240",
+      "rank": "2",
+      "supply": "107019652.1240000000000000",
+      "symbol": "eth",
+      "volume": "2142946644.6911915809063679",
+      "vwap24Hr": "214.2330964435728628",
+    },
+    Object {
+      "assetId": "ripple",
+      "change": "-2.4818117654853840",
+      "imageUrl": "https://static.coincap.io/assets/icons/xrp@2x.png",
+      "marketCap": "13273148414.3178526807508153",
+      "name": "XRP",
+      "price": "0.3098834972786443",
+      "rank": "3",
+      "supply": "42832704971.0000000000000000",
+      "symbol": "xrp",
+      "volume": "328601262.6322863506211281",
+      "vwap24Hr": "0.3159417798877903",
+    },
+  ],
+}
+`;
+
+exports[`helpers testing should return formatted history 1`] = `
+Object {
+  "data": Array [
+    Array [
+      1563321600000,
+      "9596.1458322208468691",
+    ],
+    Array [
+      1563408000000,
+      "10067.8049747830851174",
+    ],
+    Array [
+      1563494400000,
+      "10487.4592613145577358",
+    ],
+    Array [
+      1563580800000,
+      "10689.0656592893457750",
+    ],
+    Array [
+      1563667200000,
+      "10587.5608352864257851",
+    ],
+    Array [
+      1563753600000,
+      "10468.2066641144659385",
+    ],
+  ],
+}
+`;

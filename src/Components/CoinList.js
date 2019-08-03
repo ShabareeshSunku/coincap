@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchCoinList, updatePrice } from "../actions";
 import { RateContext } from './RateContext'
 import CoinListItem from './CoinListItem'
-class CoinList extends Component {
+export class CoinList extends Component {
   constructor() {
     super()
     this.state = {
@@ -32,7 +32,7 @@ class CoinList extends Component {
       me.socket.onopen = function () {
         console.log('socket connection opened')
       }
-      me.socket.onclose = function(){
+      me.socket.onclose = function () {
         console.log('connection closed')
       }
       me.socket.onmessage = function (msg) {
@@ -47,7 +47,7 @@ class CoinList extends Component {
   componentWillUnmount = () => {
     this.socket.close()
   };
-  
+
   render() {
     const coins = this.props.coins;
     const { items = [], loading = false } = coins;
@@ -79,10 +79,14 @@ class CoinList extends Component {
                     </th>
                   ))}
                 </tr>
-                {items.map(item => {
-                  return <CoinListItem coin={item} rate={rate} key={item.assetId} />
-                })}
               </thead>
+              <tbody>
+                {
+                  items.map(item => {
+                    return <CoinListItem coin={item} rate={rate} key={item.assetId} />
+                  })
+                }
+              </tbody>
             </table>
           )}
       </div>

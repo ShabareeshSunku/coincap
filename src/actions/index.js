@@ -47,6 +47,7 @@ function fetchCoinHistory(coinId, timespan) {
     timespan: timespan,
     start,
     end,
+    interval,
     transform: processCoinHistory
   }
 }

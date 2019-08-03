@@ -4,7 +4,15 @@ import { fetchCoin, fetchCoinHistory } from '../actions';
 import ChartWrapper from './ChartWrapper';
 import Numeral from './Numeral';
 import { RateContext } from './RateContext';
+import { Redirect } from 'react-router-dom'
 class Coin extends Component {
+    constructor() {
+        super()
+        const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn') || '')
+        this.state = {
+            isLoggedIn: isLoggedIn || false
+        }
+    }
     componentDidMount() {
         const coinId = this.props.match.params.coinId
         this.props.fetchCoin(coinId)
@@ -23,6 +31,9 @@ class Coin extends Component {
         }
         return (
             <div>
+                {
+                    !this.state.isLoggedIn ? <Redirect to='/' /> : null
+                }
                 <div className="coin-info">
                     <div className="wrapper">
                         <div className="row">
